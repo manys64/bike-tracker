@@ -8,7 +8,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.bikeTracker.DetailActivity"/>
+        <activity
+            android:name="com.example.bikeTracker.DetailActivity"
+            android:parentActivityName="com.example.bikeTracker.MainActivity">
+        </activity>
         <activity android:name="com.example.bikeTracker.MainActivity"
             android:exported="true">
             <intent-filter>

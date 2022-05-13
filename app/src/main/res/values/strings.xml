@@ -1,7 +1,19 @@
 <resources>
-    <string name="app_name">Coctails</string>
-    <string name="detail_button"> Pokaż przepis </string>
-    <string name="cocktail_name"> Nazwa drinka </string>
-    <string name="cocktail_recipe"> Składniki i sposób przygotowania </string>
+    <string name="app_name">Trasy rowerowe</string>
+    <string name="detail_button">"Pokaż przepis"</string>
+    <string name="track_name">Nazwa trasy</string>
+    <string name="track_top_time">Najlepszy czas: </string>
+    <string name="track_length">Długość trasy: </string>
+    <string name="track_description">Opis: </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="authors">Autorzy</string>
+    <string name="app_info">Aplikacja stworzona na potrzeby zaliczenia przedmiotu "Aplikacje Mobline".
+        Aplikacja stworzona w AndroidStudio w języki Kotlin. Aplikacja pozwala na podgląd tras
+        oraz mierzenie czasu uzyskanego na danej trasie.
+    </string>
+    <string name="author1">Mateusz Olewnik</string>
+    <string name="author2">Mariusz Nowak</string>
+    <string name="info_tab">Informacje</string>
+    <string name="short_track_tab">Krótkie trasy</string>
+    <string name="long_track_tab">Długie Trasy</string>
 </resources>
