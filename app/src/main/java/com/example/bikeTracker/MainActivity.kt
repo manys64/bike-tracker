@@ -3,7 +3,9 @@ package com.example.bikeTracker
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.example.coctails.R
 import com.google.android.material.tabs.TabLayout
@@ -31,10 +33,21 @@ class MainActivity : AppCompatActivity(), TrackLengthShortFragment.Listener,
     }
 
     override fun itemClicked(id: Long, type: TrackType) {
-        val intent = Intent(this, DetailActivity::class.java)
-        intent
-            .putExtra(DetailActivity.EXTRA_TRACK_ID, id.toInt())
-            .putExtra(DetailActivity.TRACK_TYPE, type)
-        startActivity(intent)
+        val fragmentContainer = findViewById<View>(R.id.fragment_container)
+        if (fragmentContainer != null) {
+            val details = TrackDetailFragment()
+            val transition = supportFragmentManager.beginTransaction()
+            details.setTrack(id, type)
+            transition.replace(R.id.fragment_container, details)
+            transition.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            transition.addToBackStack(null)
+            transition.commit()
+        } else {
+            val intent = Intent(this, DetailActivity::class.java)
+            intent
+                .putExtra(DetailActivity.EXTRA_TRACK_ID, id.toInt())
+                .putExtra(DetailActivity.TRACK_TYPE, type)
+            startActivity(intent)
+        }
     }
 }

@@ -24,6 +24,17 @@ class TrackDetailFragment : Fragment() {
         trackType = type
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putLong("trackId", trackId)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState != null) {
+            trackId = savedInstanceState.getLong("trackId")
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         val view = view
