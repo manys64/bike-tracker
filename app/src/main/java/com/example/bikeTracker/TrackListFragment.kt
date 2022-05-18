@@ -1,6 +1,5 @@
 package com.example.bikeTracker
 
-import android.R as R
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,10 +25,10 @@ class TrackListFragment : ListFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val names = mutableListOf<String>()
-        for (track in Track.tracks) {
+        for (track in Track.getTrack()) {
             names.add(track.name)
         }
-        val adapter = ArrayAdapter(inflater.context, R.layout.simple_list_item_1, names)
+        val adapter = ArrayAdapter(inflater.context, android.R.layout.simple_list_item_1, names)
         listAdapter = adapter
         return super.onCreateView(inflater, container, savedInstanceState)
     }

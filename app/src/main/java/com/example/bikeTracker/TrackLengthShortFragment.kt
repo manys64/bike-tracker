@@ -30,7 +30,7 @@ class TrackLengthShortFragment : ListFragment() {
         savedInstanceState: Bundle?
     ): View? {
         val names = mutableListOf<String>()
-        for (track in Track.tracks) {
+        for (track in Track.getTrack()) {
             track.type == TrackType.SHORT && names.add(track.name)
         }
         val adapter = ArrayAdapter(inflater.context, android.R.layout.simple_list_item_1, names)
