@@ -13,7 +13,7 @@ class DetailActivity : AppCompatActivity() {
         val trackType = intent.extras!![TRACK_TYPE] as TrackType
         frag!!.setTrack(trackId.toLong(), trackType)
         setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.title = Track.tracks[trackId].name
+        supportActionBar?.title = Track.getTrack().filter { t -> t.type == trackType }[trackId].name
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

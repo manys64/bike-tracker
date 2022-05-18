@@ -16,4 +16,9 @@
     <string name="info_tab">Informacje</string>
     <string name="short_track_tab">Krótkie trasy</string>
     <string name="long_track_tab">Długie Trasy</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+    <string name="save_track">Zapisz</string>
+    <string name="track_last_time">Ostatni czas: </string>
 </resources>

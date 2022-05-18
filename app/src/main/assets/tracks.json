@@ -3,6 +3,7 @@
     "name": "Wartostrada",
     "length": 5.45,
     "topTime": "2:34",
+    "lastTime": "2:55",
     "description": "Trasa wzdłóż warty",
     "type": "SHORT"
   },
@@ -10,6 +11,7 @@
     "name": "Grodzisk-Opalenica",
     "length": 7.2,
     "topTime": "3:32",
+    "lastTime": "3:55",
     "description": "Droga rowerowa z grodziska Wlkp. do Opalenicy, ufundowana przez fundusz rekreacji Unii Europejskiej",
     "type": "SHORT"
   },
@@ -17,6 +19,7 @@
     "name": "Próba ognia",
     "length": 16.8,
     "topTime": "19:49",
+    "lastTime": "20:51",
     "description": "Prosta szybka trasa testująca twoje możliwości szybkiej jazdy na średnim dystansie",
     "type": "LONG"
   },
@@ -24,6 +27,7 @@
     "name": "Jezioro Wonieskie",
     "length": 19.5,
     "topTime": "62:06",
+    "lastTime": "64:28",
     "description": "Trasa wokół jeziora Woneskiego",
     "type": "LONG"
   }
