@@ -1,41 +1,50 @@
 package com.example.bikeTracker
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import androidx.fragment.app.ListFragment
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.coctails.R
 
-class TrackLengthShortFragment : ListFragment() {
+class TrackLengthShortFragment : Fragment() {
     private var listener: Listener? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        Log.i("listener", context.toString())
         listener = context as Listener
-    }
-
-    override fun onListItemClick(listView: ListView, itemView: View, position: Int, id: Long) {
-        if (listener != null) {
-            listener!!.itemClicked(id, TrackType.SHORT)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        val trackRecycler = inflater.inflate(R.layout.fragment_track_length_short, container, false) as RecyclerView
         val names = mutableListOf<String>()
+        val images = mutableListOf<Int>()
         for (track in Track.getTrack()) {
-            track.type == TrackType.SHORT && names.add(track.name)
+            if (track.type == TrackType.SHORT) {
+                names.add(track.name)
+                images.add(track.getImageId(requireContext()))
+            }
         }
-        val adapter = ArrayAdapter(inflater.context, android.R.layout.simple_list_item_1, names)
-        listAdapter = adapter
-        return super.onCreateView(inflater, container, savedInstanceState)
+        val obj = object : CaptionedImagesAdapter.Listener {
+            override fun onClick(position: Int) {
+                val intent = Intent(activity, DetailActivity::class.java)
+                intent
+                    .putExtra(DetailActivity.EXTRA_TRACK_ID, position)
+                    .putExtra(DetailActivity.TRACK_TYPE, TrackType.SHORT)
+                activity?.startActivity(intent)
+            }
+        }
+        val adapter = CaptionedImagesAdapter(names, images, obj )
+        trackRecycler.adapter = adapter
+        trackRecycler.layoutManager = GridLayoutManager(activity, 2)
+        return trackRecycler
     }
 
     internal interface Listener {

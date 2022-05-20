@@ -18,7 +18,8 @@ class MainActivity : AppCompatActivity(), TrackLengthShortFragment.Listener,
         setSupportActionBar(findViewById(R.id.toolbar))
         val pager = findViewById<ViewPager>(R.id.pager)
         // utwórz bazę danych
-//        Track.init()
+        Track.deleteAllData()
+        Track.init()
         pager.adapter = SectionsPagerAdapter(supportFragmentManager)
         findViewById<TabLayout>(R.id.tabs).setupWithViewPager(pager)
     }
