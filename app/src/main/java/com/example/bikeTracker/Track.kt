@@ -1,5 +1,6 @@
 package com.example.bikeTracker
 
+import android.content.Context
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -14,13 +15,18 @@ data class Track(
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "type") val type: TrackType,
     @ColumnInfo(name = "lastTime") var lastTime: String,
-    @ColumnInfo(name = "map") val map: String?
+    @ColumnInfo(name = "map") val map: String
 ) {
+
+    fun getImageId(context: Context): Int {
+        return context.resources.getIdentifier("drawable/$map", null, context.packageName)
+    }
+
     companion object {
         private val db = Room.databaseBuilder(
             MainActivity.applicationContext(),
             AppDatabase::class.java, "database"
-        ).allowMainThreadQueries().build()
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
 
 
         fun getTrack(): List<Track> {
@@ -29,15 +35,19 @@ data class Track(
 
         fun init() {
             db.trackDao().insertAll(Track(0, "Wartostrada", 5.45.toFloat(), "2:34",
-                "Trasa wzdłóż warty", TrackType.SHORT, "2:55", null))
+                "Trasa wzdłóż warty", TrackType.SHORT, "2:55", "wartostrada"))
             db.trackDao().insertAll(Track(1, "Grodzisk-Opalenica", 7.2.toFloat(), "3:32",
                 "Droga rowerowa z grodziska Wlkp. do Opalenicy, ufundowana przez fundusz rekreacji Unii Europejskiej",
-                TrackType.SHORT, "3:55", null))
+                TrackType.SHORT, "3:55", "grodzisk_opalenica"))
             db.trackDao().insertAll(Track(2, "Próba ognia", 16.8.toFloat(), "19:49",
                 "Prosta szybka trasa testująca twoje możliwości szybkiej jazdy na średnim dystansie",
-                TrackType.LONG, "20:51", null))
+                TrackType.LONG, "20:51", "ogien"))
             db.trackDao().insertAll(Track(3, "Jezioro Wonieskie", 19.5.toFloat(), "62:06",
-                "Trasa wokół jeziora Woneskiego", TrackType.LONG, "64:28", null))
+                "Trasa wokół jeziora Woneskiego", TrackType.LONG, "64:28", "wonieskie"))
+        }
+
+        fun deleteAllData() {
+            db.trackDao().deleteAll()
         }
     }
 }

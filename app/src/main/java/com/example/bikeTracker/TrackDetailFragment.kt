@@ -1,7 +1,6 @@
 package com.example.bikeTracker
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import com.example.coctails.R
 class TrackDetailFragment : Fragment() {
     private var trackId: Long = 0
     private var trackType = TrackType.SHORT
+    private var timerShow: Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,6 +53,21 @@ class TrackDetailFragment : Fragment() {
         }
     }
 
+    fun toggleTimer() {
+        val fragment = childFragmentManager.findFragmentById(R.id.stoper_Container) as StoperFragment?
+        val fm = childFragmentManager.beginTransaction()
+            .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+        if (fragment != null) {
+            timerShow = if (timerShow) {
+                fm.hide(fragment).commit()
+                false
+            } else {
+                fm.show(fragment).commit()
+                true
+            }
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         val view = view
@@ -64,8 +79,8 @@ class TrackDetailFragment : Fragment() {
             (view.findViewById<View>(R.id.topTime) as TextView).text = track.topTime
             (view.findViewById<View>(R.id.last_time) as TextView).text = track.lastTime
 
+
             val fragment = childFragmentManager.findFragmentById(R.id.stoper_Container) as StoperFragment?
-            Log.i("frag", fragment.toString())
             fragment?.setTrack(trackId, trackType)
         }
     }

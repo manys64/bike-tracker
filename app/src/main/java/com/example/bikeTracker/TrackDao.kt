@@ -14,4 +14,7 @@ interface TrackDao {
 
     @Insert
     fun insertAll(vararg users: Track)
+
+    @Query("DELETE from track")
+    fun deleteAll()
 }

@@ -13,6 +13,7 @@
             android:parentActivityName="com.example.bikeTracker.MainActivity" />
         <activity
             android:name="com.example.bikeTracker.MainActivity"
+            android:parentActivityName="com.example.bikeTracker.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
