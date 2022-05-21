@@ -19,9 +19,6 @@ class StoperFragment : Fragment(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        parentFragmentManager.beginTransaction()
-            .hide(this)
-            .commit()
         if (savedInstanceState != null) {
             seconds = savedInstanceState.getInt("seconds")
             running = savedInstanceState.getBoolean("running")

@@ -28,6 +28,7 @@ class TrackDetailFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putLong("trackId", trackId)
+        outState.putBoolean("timerShow", timerShow)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +40,7 @@ class TrackDetailFragment : Fragment() {
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit()
         } else {
+            timerShow = savedInstanceState.getBoolean("timerShow")
             trackId = savedInstanceState.getLong("trackId")
         }
     }
@@ -79,9 +81,16 @@ class TrackDetailFragment : Fragment() {
             (view.findViewById<View>(R.id.topTime) as TextView).text = track.topTime
             (view.findViewById<View>(R.id.last_time) as TextView).text = track.lastTime
 
-
             val fragment = childFragmentManager.findFragmentById(R.id.stoper_Container) as StoperFragment?
             fragment?.setTrack(trackId, trackType)
+            val fm = childFragmentManager.beginTransaction()
+            if (fragment != null) {
+                if (timerShow) {
+                    fm.show(fragment).commit()
+                } else {
+                    fm.hide(fragment).commit()
+                }
+            }
         }
     }
 }
