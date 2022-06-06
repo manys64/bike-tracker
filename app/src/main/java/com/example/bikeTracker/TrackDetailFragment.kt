@@ -18,7 +18,7 @@ class TrackDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_cocktail_detail, container, false)
+        return inflater.inflate(R.layout.fragment_track_detail, container, false)
     }
 
     fun setTrack(id: Long, type: TrackType) {
