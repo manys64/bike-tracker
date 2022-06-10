@@ -29,6 +29,7 @@ class TrackDetailFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putLong("trackId", trackId)
         outState.putBoolean("timerShow", timerShow)
+        outState.putString("type", trackType.toString())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,12 @@ class TrackDetailFragment : Fragment() {
         } else {
             timerShow = savedInstanceState.getBoolean("timerShow")
             trackId = savedInstanceState.getLong("trackId")
+            trackType =
+                when (savedInstanceState.getString("type")) {
+                    "LONG" -> TrackType.LONG
+                    "SHORT" -> TrackType.SHORT
+                    else -> TrackType.SHORT
+                }
         }
     }
 
