@@ -32,7 +32,7 @@
         android:text="@string/app_info"
         android:textSize="16sp" />
 
-    <Space
+    <androidx.legacy.widget.Space
         android:layout_width="match_parent"
         android:layout_height="65dp" />
 
